@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiero una vida a su lado ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#4a0e1f;--deep:#2a0712;--rose:#f4a6b8;--blush:#ffe3ea;--gold:#e8c06a;--white:#fff8f6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#7a1f3a 0%,var(--wine) 45%,var(--deep) 100%);color:var(--white);font-family:'Cormorant Garamond',Georgia,serif}
+#bg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.scene{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(24px + env(safe-area-inset-top,0px)) 22px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(24px) scale(.98);transition:opacity 1.2s ease,transform 1.2s ease,visibility 0s 1.2s}
+.scene.on{opacity:1;visibility:visible;transform:none;transition:opacity 1.2s ease,transform 1.2s ease}
+.script{font-family:'Great Vibes','Brush Script MT',cursive;font-weight:400;color:var(--blush);text-shadow:0 0 22px rgba(244,166,184,.55)}
+h1.script{font-size:clamp(2.6rem,9vw,5.4rem);line-height:1.15;max-width:15em}
+h2.script{font-size:clamp(2.2rem,7vw,3.8rem);margin-bottom:.4em}
+h1 em{color:var(--gold);font-style:normal}
+.btn{margin-top:2.2rem;padding:.9em 2em;font:600 1.2rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.04em;color:var(--white);background:linear-gradient(135deg,#b3294e,#7a1f3a);border:1px solid var(--gold);border-radius:999px;cursor:pointer;box-shadow:0 0 0 0 rgba(232,192,106,.5);transition:transform .35s,box-shadow .35s;animation:pulse 2.6s infinite}
+.btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 30px rgba(244,166,184,.35)}
+.btn.small{margin-top:1.6rem;font-size:1.05rem;padding:.7em 1.6em;animation:none;opacity:0;transition:opacity 1.5s,transform .35s,box-shadow .35s}
+.btn.small.show{opacity:1}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,192,106,.45)}70%{box-shadow:0 0 0 16px rgba(232,192,106,0)}100%{box-shadow:0 0 0 0 rgba(232,192,106,0)}}
+.letter{max-width:640px;background:rgba(255,248,246,.07);border:1px solid rgba(232,192,106,.35);border-radius:18px;padding:clamp(22px,5vw,44px);backdrop-filter:blur(6px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.letter p{font-size:clamp(1.15rem,3.6vw,1.5rem);line-height:1.65;margin-bottom:1em;text-align:left;min-height:1.65em}
+.letter p:last-of-type{margin-bottom:0}
+.caret::after{content:'|';color:var(--gold);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;max-width:900px;width:100%}
+.card{background:rgba(255,248,246,.08);border:1px solid rgba(232,192,106,.3);border-radius:16px;padding:20px 12px;opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s,box-shadow .3s}
+.on .card{opacity:1;transform:none}
+.on .card:nth-child(2){transition-delay:.3s}.on .card:nth-child(3){transition-delay:.6s}.on .card:nth-child(4){transition-delay:.9s}.on .card:nth-child(5){transition-delay:1.2s}
+.card:hover{box-shadow:0 12px 34px rgba(244,166,184,.3);transform:translateY(-6px)}
+.ico{font-size:3rem;display:inline-block;animation:float 3.4s ease-in-out infinite}
+.card:nth-child(2) .ico{animation-name:bounce}.card:nth-child(3) .ico{animation-name:fly}.card:nth-child(4) .ico{animation-name:wiggle}.card:nth-child(5) .ico{animation-name:beat}
+@keyframes float{50%{transform:translateY(-10px) rotate(6deg)}}
+@keyframes bounce{50%{transform:scale(1.15) translateY(-6px)}}
+@keyframes fly{50%{transform:translate(10px,-10px) rotate(8deg)}}
+@keyframes wiggle{25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+@keyframes beat{0%,100%{transform:scale(1)}40%{transform:scale(1.2)}}
+.card p{margin-top:.6em;font-size:1.2rem;line-height:1.4}
+#tree{width:min(92vw,420px);height:auto;max-height:56vh;overflow:visible}
+.b{fill:none;stroke:#8a5a3c;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.grow .b{animation:draw 1.2s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fl{transform:scale(0);transform-box:fill-box;transform-origin:center;opacity:0}
+.grow .fl{animation:bloom 1.4s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes bloom{to{transform:scale(1);opacity:1}}
+.seed{fill:var(--gold);opacity:0;animation:seed 1.2s forwards}
+@keyframes seed{to{opacity:1}}
+#cap{max-width:560px;font-size:clamp(1.1rem,3.4vw,1.4rem);line-height:1.5;opacity:0;transition:opacity 2s}
+#cap.show{opacity:1}
+.final p.big{font-size:clamp(1.3rem,4.2vw,2.1rem);line-height:1.5;max-width:700px;margin-bottom:1em}
+.q{font-family:'Great Vibes','Brush Script MT',cursive;font-size:clamp(2.2rem,8vw,4rem);color:var(--blush);background:none;border:none;cursor:pointer;text-shadow:0 0 26px rgba(244,166,184,.8);animation:beat 2.4s infinite;margin:.3em 0}
+.q:hover{color:#fff}
+.sign{font-size:1.6rem;color:var(--gold);margin-top:1em;opacity:0;transition:opacity 2s 1s}
+.on .sign{opacity:1}
+#snd{position:fixed;z-index:5;top:calc(14px + env(safe-area-inset-top,0px));right:14px;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:rgba(74,14,31,.7);color:var(--white);font-size:1.3rem;cursor:pointer;display:none;transition:transform .3s}
+#snd:hover{transform:scale(1.12)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<!-- CANCIÓN: coloque su archivo de audio en la misma carpeta que este HTML y llámelo coming-up-roses.mp3 (o cambie el nombre aquí abajo) -->
+<audio id="song" src="coming-up-roses.mp3" loop preload="auto"></audio>
+<button id="snd" aria-label="Activar o desactivar la música">🔊</button>
+
+<section class="scene on" id="s0">
+  <h1 class="script">Tengo un sueño… y en ese sueño siempre está <em>usted</em></h1>
+  <button class="btn" data-go="1">Descubra lo que siento por usted ❤️</button>
+</section>
+
+<section class="scene" id="s1">
+  <div class="letter" id="letter">
+    <p data-t="Quiero una vida a su lado. No una vida perfecta, porque sé que tendremos días difíciles, momentos complicados y obstáculos que superar. Pero quiero que, incluso en esos días, podamos tomarnos de la mano y recordar que nos tenemos el uno al otro."></p>
+    <p data-t="Quiero despertar y saber que usted forma parte de mis días, escuchar su voz, compartir mis alegrías, cuidar de usted cuando las cosas no estén bien y celebrar cada pequeño logro juntos."></p>
+    <p data-t="No quiero solamente momentos bonitos con usted, quiero construir recuerdos, cumplir sueños, viajar, reír, aprender, crecer y mirar atrás algún día, sintiendo orgullo de todo lo que hemos construido."></p>
+    <p data-t="Quiero ser esa persona que le acompañe, que le cuide, que le respete y que le demuestre con hechos que mi amor por usted es verdadero."></p>
+    <p data-t="Porque si de algo estoy seguro, es que no solamente quiero un presente con usted… quiero un futuro entero a su lado."></p>
+  </div>
+  <button class="btn small" id="b1" data-go="2">Siga leyendo mi corazón ❤️</button>
+</section>
+
+<section class="scene" id="s2">
+  <h2 class="script">Nuestro futuro</h2>
+  <div class="grid">
+    <div class="card"><span class="ico">🌅</span><p>Despertar juntos cada mañana</p></div>
+    <div class="card"><span class="ico">🏡</span><p>Construir nuestro propio hogar</p></div>
+    <div class="card"><span class="ico">✈️</span><p>Viajar y conocer nuevos lugares</p></div>
+    <div class="card"><span class="ico">😄</span><p>Reírnos por cualquier tontería</p></div>
+    <div class="card"><span class="ico">🤍</span><p>Envejecer juntos, tomados de la mano</p></div>
+  </div>
+  <button class="btn" data-go="3">Vea el árbol de nuestro amor 🌳</button>
+</section>
+
+<section class="scene" id="s3">
+  <h2 class="script">El árbol de nuestro amor</h2>
+  <svg id="tree" viewBox="0 0 400 420" aria-label="Un árbol que crece y florece"></svg>
+  <p id="cap">Cada rama es un sueño que quiero cumplir a su lado, y cada flor, un recuerdo que deseo construir con usted.</p>
+  <button class="btn small" id="b3" data-go="4">Continuar ❤️</button>
+</section>
+
+<section class="scene final" id="s4">
+  <p class="script" style="font-size:clamp(1.8rem,6vw,3rem);margin-bottom:.5em">Para usted</p>
+  <p class="big">Si la vida me permite elegir una y otra vez, quiero seguir eligiéndole a usted. No sé qué nos espera mañana, pero sí sé con quién quisiera descubrirlo. Quiero una vida, mil aventuras y todos mis días a su lado.</p>
+  <button class="q" id="ask">¿Me permite seguir soñando un futuro con usted? ❤️</button>
+  <p class="sign script">Con todo mi amor</p>
+</section>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), scenes=[...document.querySelectorAll('.scene')];
+let cur=0;
+
+/* ---------- Fondo: corazones, pétalos y estrellas ---------- */
+const cv=$('#bg'),cx=cv.getContext('2d');let W,H,P=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+addEventListener('resize',size);size();
+const R=(a,b)=>a+Math.random()*(b-a);
+function mk(type,top){return{type,x:R(0,W),y:top?R(-H,0):R(0,H),s:type==='star'?R(.6,2):R(10,26),v:R(.25,.9),sw:R(0,6.3),r:R(0,6.3),vr:R(-.02,.02),a:R(.3,.85),c:['#f4a6b8','#ff6f91','#e8c06a','#ffd1dc'][Math.random()*4|0]}}
+for(let i=0;i<26;i++)P.push(mk('heart'));
+for(let i=0;i<30;i++)P.push(mk('petal'));
+for(let i=0;i<90;i++)P.push(mk('star'));
+function frame(t){
+  cx.clearRect(0,0,W,H);
+  for(const p of P){
+    p.sw+=.01;
+    if(p.type==='star'){
+      cx.globalAlpha=.25+.75*Math.abs(Math.sin(t/900+p.x));
+      cx.fillStyle='#fff3c9';cx.beginPath();cx.arc(p.x,p.y,p.s,0,6.3);cx.fill();continue
+    }
+    const down=p.type==='petal';
+    p.y+=down?p.v*1.3:-p.v;p.x+=Math.sin(p.sw)*.6;p.r+=p.vr;
+    if(down&&p.y>H+30){Object.assign(p,mk('petal',true));p.y=-20}
+    if(!down&&p.y<-30){Object.assign(p,mk('heart'));p.y=H+30}
+    cx.save();cx.translate(p.x,p.y);cx.rotate(down?p.r:Math.sin(p.sw)*.3);cx.globalAlpha=p.a;cx.fillStyle=p.c;
+    if(down){cx.beginPath();cx.ellipse(0,0,p.s*.55,p.s*.3,0,0,6.3);cx.fill()}
+    else{cx.font=p.s+'px serif';cx.textAlign='center';cx.fillText('♥',0,0)}
+    cx.restore()
+  }
+  requestAnimationFrame(frame)
+}
+requestAnimationFrame(frame);
+
+/* ---------- Música generada con Web Audio ---------- */
+let ac,master,playing=false,timer;
+const chords=[[261.63,329.63,392,523.25],[220,261.63,329.63,440],[174.61,220,261.63,349.23],[196,246.94,293.66,392]];
+const bass=[130.81,110,87.31,98];
+function note(f,t,d,v,type){const o=ac.createOscillator(),g=ac.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.1)}
+let ci=0;
+function bar(){const t=ac.currentTime+.05,c=chords[ci%4],step=.45,seq=[0,1,2,3,2,1,2,3];
+  note(bass[ci%4],t,2.2,.14,'triangle');
+  seq.forEach((k,i)=>note(c[k],t+i*step,1.6,.1,'sine'));ci++}
+function startSynth(){
+  if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=.5;
+    const dl=ac.createDelay(),fb=ac.createGain();dl.delayTime.value=.38;fb.gain.value=.38;master.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(ac.destination);master.connect(ac.destination)}
+  ac.resume();bar();timer=setInterval(bar,3600);playing=true;$('#snd').textContent='🔊'
+}
+function stopSynth(){clearInterval(timer);if(ac)ac.suspend()}
+const song=$('#song');let useSong=true;
+song.addEventListener('error',()=>{useSong=false});
+function startMusic(){
+  if(useSong){song.play().then(()=>{playing=true;$('#snd').textContent='🔊'}).catch(()=>{useSong=false;startSynth()})}
+  else startSynth()
+}
+function stopMusic(){song.pause();stopSynth();playing=false;$('#snd').textContent='🔇'}
+$('#snd').onclick=()=>playing?stopMusic():startMusic();
+
+/* ---------- Escritura de la carta ---------- */
+let skip=false,typed=false;
+async function typeLetter(){
+  if(typed)return;typed=true;
+  for(const p of document.querySelectorAll('#letter p')){
+    const txt=p.dataset.t;p.classList.add('caret');
+    for(let i=1;i<=txt.length;i++){
+      p.textContent=txt.slice(0,i);
+      if(!skip)await new Promise(r=>setTimeout(r,26))
+    }
+    p.classList.remove('caret');await new Promise(r=>setTimeout(r,skip?0:450))
+  }
+  $('#b1').classList.add('show')
+}
+$('#letter').onclick=()=>{skip=true};
+
+/* ---------- Árbol ---------- */
+const NS='http://www.w3.org/2000/svg';
+function el(n,a,parent){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e}
+let built=false;
+function buildTree(){
+  if(built)return;built=true;const svg=$('#tree');
+  el('circle',{cx:200,cy:392,r:6,class:'seed'},svg);
+  function flower(x,y,t){
+    const g=el('g',{class:'fl',style:'animation-delay:'+t+'s'},svg);
+    const col=['#ff8fab','#ffb3c6','#f4a6b8','#ffd1dc'][Math.random()*4|0];
+    for(let i=0;i<5;i++){const a=i*1.2566;el('circle',{cx:x+Math.cos(a)*5,cy:y+Math.sin(a)*5,r:4.2,fill:col},g)}
+    el('circle',{cx:x,cy:y,r:2.6,fill:'#e8c06a'},g)
+  }
+  function br(x,y,l,a,d,t){
+    const x2=x+Math.sin(a)*l,y2=y-Math.cos(a)*l;
+    el('path',{d:`M${x} ${y}L${x2} ${y2}`,pathLength:1,class:'b','stroke-width':d*1.9+1.2,style:'animation-delay:'+t+'s'},svg);
+    if(d>0){br(x2,y2,l*.76,a-.55+R(-.12,.12),d-1,t+.9);br(x2,y2,l*.76,a+.55+R(-.12,.12),d-1,t+.9)}
+    else{flower(x2,y2,t+1);if(Math.random()<.6)flower(x2+R(-12,12),y2+R(-10,4),t+1.4)}
+  }
+  br(200,392,92,0,4,1.4);
+}
+function growTree(){
+  buildTree();
+  setTimeout(()=>$('#s3').classList.add('grow'),50);
+  setTimeout(()=>$('#cap').classList.add('show'),9000);
+  setTimeout(()=>$('#b3').classList.add('show'),10500);
+}
+
+/* ---------- Navegación ---------- */
+function go(n){
+  if(n===1&&!playing&&!ac)startMusic();
+  $('#snd').style.display='block';
+  scenes[cur].classList.remove('on');cur=n;scenes[n].classList.add('on');scenes[n].scrollTop=0;
+  if(n===1)setTimeout(typeLetter,1000);
+  if(n===3)setTimeout(growTree,900);
+  if(n===4)burst(14)
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(+b.dataset.go));
+
+/* ---------- Corazones al hacer clic ---------- */
+function burst(n,x,y){
+  x=x??W/2;y=y??H/2;
+  for(let i=0;i<n;i++){const p=mk('heart');p.x=x+R(-30,30);p.y=y+R(-20,20);p.v=R(.8,2.4);p.s=R(14,30);p.a=1;P.push(p);setTimeout(()=>{const k=P.indexOf(p);if(k>-1)P.splice(k,1)},9000)}
+}
+$('#ask').onclick=e=>burst(40,e.clientX,e.clientY);
+addEventListener('pointerdown',e=>{if(cur!==1)burst(3,e.clientX,e.clientY)});
+})();
+</script>
+</body>
+</html>
